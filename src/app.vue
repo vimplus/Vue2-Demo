@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="VueApp">
         <div>
             <router-link to="/about">about</router-link>
         </div>

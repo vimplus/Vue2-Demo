@@ -26,7 +26,7 @@ module.exports = {
 		                    use: 'css-loader'
 		                }),
 		                sass: ExtractTextPlugin.extract({
-		                    use: ["css-loader", "sass-loader"]
+		                    use: ["vue-style-loader", "css-loader", "sass-loader"]
 		                })
 		            }
 		        }
@@ -35,7 +35,7 @@ module.exports = {
 			    test: /\.(css|scss)$/,
 			    use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
-					use: ["vue-style-loader", "css-loader", "postcss-loader", "sass-loader"]
+					use: ["css-loader", "postcss-loader", "sass-loader"]
 				})
 			},
 			{
@@ -62,7 +62,7 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin({
-            filename: 'css/[name].[contenthash:8].css'
+            filename: 'css/index.[contenthash:8].css'
         }),
 		new HtmlWebpackPlugin({
 		    filename: 'index.html',
