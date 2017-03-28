@@ -6,7 +6,9 @@ Vue.use(VueRouter);
 
 const router = new VueRouter(require('./router'));
 
-new Vue({
+
+
+var VueApp = new Vue({
     el: '#VueApp',
     router: router,
     render: h => h(App)
