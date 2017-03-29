@@ -10,10 +10,10 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: '/\.vue$/',
+				test: /\.vue$/,
 				use: ['vue-loader']
 			}, {
-				test: '/\.js$/',
+				test: /\.js$/,
 				use: 'babel-loader',
 				include: [path.resolve(__dirname, 'src')]
 			}
