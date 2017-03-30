@@ -1,14 +1,21 @@
 const path = require('path');
 
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+
 
 module.exports = {
-	entry: './src/index.js',
+	entry: {
+		index: './src/index.js'
+	},
 	output: {
 		path: path.join(__dirname + '/dist'),
 		publicPath: '',
-		filename: 'js/index.js'
+		filename: 'js/[name].[hash].js',
+		chunkFilename: 'js/[id].chunk.[chunkhash:8].js'
 	},
 	module: {
 		rules: [
@@ -26,7 +33,7 @@ module.exports = {
 		                    use: 'css-loader'
 		                }),
 		                sass: ExtractTextPlugin.extract({
-		                    use: ["vue-style-loader", "css-loader", "sass-loader"]
+		                    use: ["css-loader", "sass-loader"]
 		                })
 		            }
 		        }
@@ -34,7 +41,7 @@ module.exports = {
 			{
 			    test: /\.(css|scss)$/,
 			    use: ExtractTextPlugin.extract({
-					fallback: 'style-loader',
+					fallback: 'vue-style-loader',
 					use: ["css-loader", "postcss-loader", "sass-loader"]
 				})
 			},
@@ -64,9 +71,17 @@ module.exports = {
 		new ExtractTextPlugin({
             filename: 'css/index.[contenthash:8].css'
         }),
+		/*new webpack.optimize.CommonsChunkPlugin({
+			//name: 'vendor',
+			filename: '[name].[chunkhash].js',
+			minChunks: Infinity
+	    }),*/
+		new HtmlWebpackHarddiskPlugin(),
 		new HtmlWebpackPlugin({
+			alwaysWriteToDisk: true,
 		    filename: 'index.html',
-		    template: './src/index.html'
+		    template: './src/index.html',
+			chunks: ['index']
 		})
 	],
 	resolve: {
