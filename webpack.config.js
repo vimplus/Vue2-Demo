@@ -66,7 +66,22 @@ module.exports = {
         }),
 		new HtmlWebpackPlugin({
 		    filename: 'index.html',
-		    template: './index.html'
+		    template: './src/index.html'
 		})
-	]
+	],
+	resolve: {
+        extensions: ['.js', '.jsx', '.scss', '.css'],
+        alias: {
+            libs: path.resolve('./src/libs'),
+            utils: path.resolve('./src/utils'),
+            scss: path.resolve('./src/scss'),
+            css: path.resolve('./src/css'),
+            img: path.resolve('./src/images'),
+            api: path.resolve('./src/api'),
+            cpn: path.resolve('./src/components'),
+            routes: path.resolve('./src/routes'),
+            data: path.resolve('./src/data')
+        },
+        modules: ['node_modules']
+    }
 }

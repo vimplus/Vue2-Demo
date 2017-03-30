@@ -5,10 +5,10 @@
 </template>
 
 <script>
-    import '../scss/global.scss';
+    import 'scss/global.scss';
 
     module.exports = {
-        data: function () {
+        data () {
             return {
                 page: 'about'
             }
